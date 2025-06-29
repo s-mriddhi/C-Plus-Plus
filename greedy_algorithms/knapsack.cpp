@@ -38,26 +38,6 @@ void quickSort(Item arr[], int low, int high) {
     }
 }
 
-
-int main() {
-    cout << "\nEnter the capacity of the knapsack : ";
-    float capacity;
-    cin >> capacity;
-    cout << "\n Enter the number of Items : ";
-    int n;
-    cin >> n;
-    Item *itemArray = new Item[n];
-    for (int i = 0; i < n; i++) {
-        cout << "\nEnter the weight and profit of item " << i + 1 << " : ";
-        cin >> itemArray[i].weight;
-        cin >> itemArray[i].profit;
-    }
-
-    quickSort(itemArray, 0, n - 1);
-
-    // show(itemArray, n);
-
-
 int main() {
     cout << "\nEnter the capacity of the knapsack : ";
     float capacity; //constraint 
