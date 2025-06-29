@@ -11,7 +11,52 @@ float profitPerUnit(Item x) { return (float)x.profit / (float)x.weight; }
 
 int partition(Item arr[], int low, int high) {
     Item pivot = arr[high];  // pivot
-	@@ -39,32 +40,38 @@ void quickSort(Item arr[], int low, int high) {
+    int i = (low - 1);       // Index of smaller element
+
+    for (int j = low; j < high; j++) {
+        // If current element is smaller than or
+        // equal to pivot
+        if (profitPerUnit(arr[j]) <= profitPerUnit(pivot)) {
+            i++;  // increment index of smaller element
+            Item temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    Item temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+    return (i + 1);
+}
+
+void quickSort(Item arr[], int low, int high) {
+    if (low < high) {
+        int p = partition(arr, low, high);
+
+        quickSort(arr, low, p - 1);
+        quickSort(arr, p + 1, high);
+    }
+}
+
+
+int main() {
+    cout << "\nEnter the capacity of the knapsack : ";
+    float capacity;
+    cin >> capacity;
+    cout << "\n Enter the number of Items : ";
+    int n;
+    cin >> n;
+    Item *itemArray = new Item[n];
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter the weight and profit of item " << i + 1 << " : ";
+        cin >> itemArray[i].weight;
+        cin >> itemArray[i].profit;
+    }
+
+    quickSort(itemArray, 0, n - 1);
+
+    // show(itemArray, n);
+
 
 int main() {
     cout << "\nEnter the capacity of the knapsack : ";
